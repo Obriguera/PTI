@@ -2,31 +2,31 @@ from transformers import pipeline
 import os
 
 def test_plant_specialist(img_path):
-    print("\n--- [TEST 3: Plant Specialist (ViT-Tiny)] ---")
+    print("\n--- [TEST 3: Plant Specialist (ViT-Base)] ---")
     
-    # 1. Cargamos el pipeline de clasificación
-    # Este modelo es pequeño (aprox 20MB), ideal para procesamiento en tiempo real
-    print("Iniciando pipeline de Hugging Face...")
-    classifier = pipeline("image-classification", model="timm/vit_tiny_patch16_224")
-    
-    # 2. Procesamos la imagen
-    print(f"Analizando imagen: {os.path.basename(img_path)}")
-    results = classifier(img_path)
-    
-    # 3. Mostramos resultados
-    print("\n--- TOP DETECCIONES ---")
-    for res in results[:3]: # Mostramos los 3 más probables
-        porcentaje = round(res['score'] * 100, 2)
-        label = res['label'].replace('_', ' ')
-        print(f"Detección: {label} ({porcentaje}%)")
+    # 1. Usamos un modelo de Google que es el estándar para Vision Transformers
+    print("Cargando modelo de Google... (Aprox. 300MB, paciencia la primera vez)")
+    try:
+        # Este modelo es muy bueno reconociendo estructuras generales
+        classifier = pipeline("image-classification", model="google/vit-base-patch16-224")
+        
+        print(f"Analizando imagen: {os.path.basename(img_path)}")
+        results = classifier(img_path)
+        
+        print("\n--- TOP DETECCIONES ---")
+        for res in results[:3]:
+            porcentaje = round(res['score'] * 100, 2)
+            label = res['label'].replace('_', ' ')
+            print(f"Detección: {label} ({porcentaje}%)")
+            
+    except Exception as e:
+        print(f"Error específico al cargar el modelo: {e}")
 
 if __name__ == "__main__":
-    IMAGEN = r"D:/imagenes de ejemplo/test.jpg"
+    # Aseguramos que la ruta sea la correcta en tu D:
+    IMAGEN = r"D:/imagenes de ejemplo/test.jpg" 
     
     if os.path.exists(IMAGEN):
-        try:
-            test_plant_specialist(IMAGEN)
-        except Exception as e:
-            print(f"Error en el Test 3: {e}")
+        test_plant_specialist(IMAGEN)
     else:
-        print(f"No se encontró el archivo en: {IMAGEN}")
+        print(f"Error: No se encontró el archivo en: {IMAGEN}")
