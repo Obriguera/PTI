@@ -42,3 +42,7 @@ pip install -r requirements.txt
 ```
 
 Agrega `venv/` a tu `.gitignore` para evitar subir el entorno virtual.
+
+# GitHub (No sean negros)
+Por favor, sean responsables con las branches del github. Si van a hacer cambios creen una rama basada en el master.
+Una vez terminen de hacer cambios, por favor creen el pull request correspondiente.
