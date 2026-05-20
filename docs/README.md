@@ -1,2 +1,3 @@
 ## Importantes
-[URL presentacion](https://gamma.app/docs/PTI-Plataforma-de-Deteccion-de-Malezas-en-Cana-de-Azucar-1msu2ysyacxt537)
+[URL presentacion](https://gamma.app/docs/Plataforma-Open-Source-de-Precision-Agronomica-7fxkyh7gij80cm1?mode=doc)
+
