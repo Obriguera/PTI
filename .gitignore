@@ -216,3 +216,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Datos y modelos (archivos grandes — no versionar)
+data/raw/
+ml/models/*.pt
+ml/models/*.onnx
+ml/models/*.engine
+*.weights

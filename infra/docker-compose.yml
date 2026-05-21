@@ -1,0 +1,62 @@
+services:
+  db:
+    image: postgis/postgis:15-3.4
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-pti}
+      POSTGRES_USER: ${POSTGRES_USER:-pti}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+  backend:
+    build: ../backend
+    restart: unless-stopped
+    command: uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - ../backend:/app
+      - ../data:/data:ro
+    ports:
+      - "8000:8000"
+    env_file: .env
+    depends_on:
+      - db
+      - redis
+
+  worker:
+    build: ../backend
+    restart: unless-stopped
+    command: celery -A workers.celery_app worker --loglevel=info --concurrency=2
+    volumes:
+      - ../backend:/app
+      - ../data:/data:ro
+    env_file: .env
+    depends_on:
+      - redis
+      - db
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.14.0
+    restart: unless-stopped
+    command: >
+      mlflow server
+      --host 0.0.0.0
+      --port 5000
+      --backend-store-uri sqlite:////mlflow/mlflow.db
+      --default-artifact-root /mlflow/artifacts
+    volumes:
+      - mlflow_data:/mlflow
+    ports:
+      - "5000:5000"
+
+volumes:
+  pgdata:
+  mlflow_data:
