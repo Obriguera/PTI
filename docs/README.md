@@ -1,3 +1,3 @@
 ## Importantes
-[URL presentacion](https://gamma.app/docs/Plataforma-Open-Source-de-Precision-Agronomica-7fxkyh7gij80cm1?mode=doc)
+[URL presentacion](https://docs.google.com/presentation/d/18BPK4Sq37DXtY0gCbfWNwp-PBzbedD5c__qctImcE2o/edit?slide=id.p1#slide=id.p1)
 
