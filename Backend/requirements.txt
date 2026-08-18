@@ -1,6 +1,0 @@
-# Requerimientos del backend
-# Python: 3.14
-# No hay librerías añadidas todavía; añade dependencias una por línea.
-# Ejemplos (descomenta o edita según necesites):
-# fastapi==0.100.0
-

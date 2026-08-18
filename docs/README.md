@@ -1,3 +1,6 @@
+En esta carpeta debe ir todo lo que es documentación
+## Requerimientos
+Que queremos que haga el sistema
 ## Importantes
 [URL presentacion](https://gamma.app/docs/Plataforma-Open-Source-de-Precision-Agronomica-7fxkyh7gij80cm1)
 
