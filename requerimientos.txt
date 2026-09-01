@@ -68,3 +68,7 @@ ultralytics-thop==2.1.6
 urllib3==2.6.3
 win32_setctime==1.2.0
 zipp==3.23.1
+
+
+pip install labelme
+labelme
